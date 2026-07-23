@@ -1,0 +1,23 @@
+# Razer BlackWidow V3 (wired keyboard)
+# source: OpenRazer daemon hardware/keyboards.py class `RazerBlackWidowV3`
+#   USB_PID = 0x024E, MATRIX_DIMS = [6, 22] (full per-key RGB), wired (no battery).
+# source: transaction_id 0x1F — Phase 0 grouping (BlackWidow V3/V4 ...) from
+#   razerkbd_driver.c switch tables.
+# source: wait 600 µs — Phase 0 timing table (wired keyboards default).
+
+name = "Razer BlackWidow V3"
+usb_pid = "0x024e"
+device_type = "keyboard"
+transaction_id = "0x1f"
+wait_us = 600
+matrix_dims = [6, 22]
+
+[capabilities]
+lighting = true
+dpi = false
+polling_rate = true
+battery = false
+
+[[led_regions]]
+name = "backlight"
+id = 0x05

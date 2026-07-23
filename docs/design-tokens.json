@@ -1,0 +1,90 @@
+{
+  "name": "opsrzr — soft instrument panel",
+  "product": "opsrzr desktop settings",
+  "personality": ["quietly luxurious", "composed", "precise"],
+  "mode": "dark-first",
+  "colors": {
+    "bg": { "value": "#12161c", "role": "app background (deep smoke, not pure black); lifts surface panels tonally" },
+    "surface": { "value": "#20262f", "role": "panels, groups" },
+    "surfaceRaised": { "value": "#2a313b", "role": "controls, selected rows, slider track remainder" },
+    "divider": { "value": "#313945", "role": "structural dividers" },
+    "text": { "value": "#e9edef", "role": "primary text (porcelain)" },
+    "textMuted": { "value": "#a7afb8", "role": "labels/metadata; AA on all surfaces" },
+    "accent": { "value": "#5b8cff", "role": "selection + real actions (moonlight blue)" },
+    "accentInk": { "value": "#0a1020", "role": "text on accent, AA >= 4.5:1" },
+    "accentWash": { "value": "rgba(91, 140, 255, 0.12)", "role": "thinned accent for selected-row surface" },
+    "accentLine": { "value": "rgba(91, 140, 255, 0.42)", "role": "bluer edge on selected rows" },
+    "activeHardware": { "value": "#8da15e", "role": "live-hardware status (connected, charge)" },
+    "warn": { "value": "#d98a5b", "role": "low battery / error edges" },
+    "focus": { "value": "#9eb7ff", "role": "focus ring" }
+  },
+  "elevation": {
+    "strategy": "tonal",
+    "steps": ["bg", "surface", "surfaceRaised"],
+    "dividers": "1px solid divider",
+    "forbidden": ["glow", "gradient-decoration", "shadow-as-hierarchy"]
+  },
+  "typography": {
+    "fontFamily": "\"Segoe UI Variable Text\", \"Segoe UI Variable\", Aptos, \"Segoe UI\", system-ui, sans-serif",
+    "variableAxis": "wght",
+    "scale": {
+      "deviceTitle": { "size": "22px", "wght": 640, "tracking": "-0.01em" },
+      "sectionTitle": { "size": "13px", "wght": 600, "tracking": "0.05em", "transform": "uppercase" },
+      "railTitle": { "size": "11px", "wght": 400, "tracking": "0.09em", "transform": "uppercase" },
+      "body": { "size": "14px", "lineHeight": 1.5 },
+      "numeric": { "feature": "tabular-nums" }
+    }
+  },
+  "radius": { "base": "14px", "small": "8px", "pill": "999px" },
+  "components": {
+    "switch": "pill toggle for binary settings (launch-at-login); native checkbox restyled via appearance:none, accent when checked",
+    "range": "custom track with accent fill to --pct (set in main.ts) over surfaceRaised remainder; 16px accent thumb, scales on hover/press",
+    "selectedRow": "accentWash over surfaceRaised with accentLine border; never a coloured side-stripe",
+    "primaryButton": "btn-accent carries the single primary action per surface (e.g. profile Apply)"
+  },
+  "spacing": { "groupPadding": "16px 20px", "rowPadding": "14px 0", "railPadding": "16px 12px" },
+  "layout": {
+    "zones": ["deviceRail", "settingsCanvas", "summaryRail"],
+    "gridColumns": "260px minmax(0, 1fr) 280px",
+    "canvasMaxWidth": "780px",
+    "breakpoints": {
+      "stack": "1024px",
+      "compact": "640px"
+    }
+  },
+  "motion": {
+    "control": "0.15s ease",
+    "battery": "0.35s ease",
+    "reducedMotion": "collapse to 0.01ms"
+  },
+  "accessibility": {
+    "standard": "WCAG 2.2 AA",
+    "focus": ":focus-visible 2px solid focus, offset 2px",
+    "statusColorOnly": false,
+    "reducedMotion": true,
+    "highContrast": "prefers-contrast: more raises textMuted, surfaceRaised, divider",
+    "contrastNotes": {
+      "textOnBg": "~12:1",
+      "mutedOnSurface": ">=7:1",
+      "inkOnAccent": ">=4.5:1"
+    }
+  },
+  "capabilityGating": {
+    "battery": "capabilities.battery",
+    "mousePerformance": "deviceType === 'mouse' && capabilities.dpi",
+    "lighting": "capabilities.lighting",
+    "polling": "capabilities.pollingRate",
+    "fabricated": []
+  },
+  "colorDiscipline": {
+    "accent": ["selection", "primary-action", "focus"],
+    "activeHardware": ["connected-status", "battery-fill"],
+    "rule": "colour marks status/selection/action, never atmosphere"
+  },
+  "antiReferences": [
+    "Razer Synapse RGB-heavy crowded gaming aesthetic",
+    "generic AI/SaaS dashboard: oversized metric cards, gradient decoration, repeated pills, glow-as-hierarchy",
+    "a phone interface stretched into a desktop window",
+    "harsh pure-black surfaces, low-contrast gray text, colour-only status"
+  ]
+}

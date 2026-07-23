@@ -1,0 +1,30 @@
+# Razer Basilisk V3 (wired mouse)
+# source: OpenRazer daemon hardware/mouse.py class `RazerBasiliskV3`
+#   USB_PID = 0x0099, DPI_MAX = 26000, MATRIX_DIMS = [1, 11] (11-zone underglow +
+#   scroll/logo), wired (no battery). Extended matrix lighting (class 0x0F).
+# source: transaction_id 0x1F — Phase 0 grouping (modern wired/wireless:
+#   Basilisk V3/Ultimate ...) from razermouse_driver.c switch tables.
+# source: wait 600 µs — Phase 0 timing table (wired mice default).
+
+name = "Razer Basilisk V3"
+usb_pid = "0x0099"
+device_type = "mouse"
+transaction_id = "0x1f"
+wait_us = 600
+dpi_min = 100
+dpi_max = 26000
+matrix_dims = [1, 11]
+
+[capabilities]
+lighting = true
+dpi = true
+polling_rate = true
+battery = false
+
+[[led_regions]]
+name = "logo"
+id = 0x04
+
+[[led_regions]]
+name = "scroll"
+id = 0x01

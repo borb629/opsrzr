@@ -1,0 +1,16 @@
+[package]
+name = "razer-hid"
+version = "0.1.0"
+edition = "2021"
+license = "GPL-2.0-only"
+description = "Razer HID protocol library (report codec + Windows transport) for opsrzr"
+
+[dependencies]
+# Pure-Rust hidapi backend so no C toolchain is needed on Windows MSVC.
+# Verified in Phase 0 against docs.rs/hidapi v2.6.6.
+hidapi = { version = "2.6", features = ["windows-native"] }
+thiserror = "2"
+serde = { version = "1", features = ["derive"] }
+toml = "0.8"
+
+[dev-dependencies]

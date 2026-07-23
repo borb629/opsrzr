@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="/src/styles.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>opsrzr</title>
+    <script type="module" src="/src/main.ts" defer></script>
+  </head>
+
+  <body>
+    <header class="topbar">
+      <div class="brand">
+        <span class="brand-mark" aria-hidden="true">
+          <img src="/logo.png" alt="" width="20" height="20" />
+        </span>
+        <span class="brand-name">opsrzr</span>
+      </div>
+
+      <div class="profiles" id="profiles-bar">
+        <label class="profiles-label" for="profile-select">Profile</label>
+        <select id="profile-select" class="select" aria-label="Active profile">
+          <option value="">No profile</option>
+        </select>
+        <button id="profile-apply" class="btn btn-accent" type="button">Apply</button>
+        <button id="profile-save" class="btn" type="button">Save…</button>
+        <button id="profile-delete" class="btn btn-quiet" type="button">Delete</button>
+      </div>
+
+      <label class="autostart">
+        <input type="checkbox" id="autostart-toggle" />
+        <span>Launch at login</span>
+      </label>
+    </header>
+
+    <div class="workspace">
+      <aside class="sidebar" aria-label="Devices">
+        <h2 class="rail-title" id="devices-heading">Devices</h2>
+        <ul id="device-list" class="device-list" aria-labelledby="devices-heading"></ul>
+      </aside>
+
+      <main class="detail" id="detail" aria-label="Device settings" tabindex="-1"></main>
+
+      <aside class="device-summary" id="device-summary" aria-label="Device summary" hidden></aside>
+    </div>
+
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  </body>
+</html>
