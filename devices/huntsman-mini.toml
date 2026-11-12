@@ -1,0 +1,40 @@
+# Razer Huntsman Mini (wired keyboard)
+# STATUS: UNTESTED on real hardware. Every value below is taken from OpenRazer
+#   sources, not from a captured USB trace.
+#
+# source: OpenRazer daemon hardware/keyboards.py class `RazerHuntsmanMini`
+#   USB_VID = 0x1532, USB_PID = 0x0257, MATRIX_DIMS = [5, 15], HAS_MATRIX = True.
+#   No poll-rate, DPI or battery methods in its METHODS list.
+# source: transaction_id 0x3f - driver/razerkbd_driver.c, matrix effect and
+#   brightness writers (razer_attr_write_matrix_effect_*,
+#   razer_attr_write_matrix_brightness): USB_DEVICE_ID_RAZER_HUNTSMAN_MINI is in
+#   the 0x3F case group for all of them.
+#   NOTE: the same driver uses 0xFF for device mode, serial, firmware, and
+#   game/macro LED state (razer_set_device_mode, razer_attr_write_game_led_state,
+#   razer_attr_write_macro_led_state). Those are not covered by this file's
+#   single transaction_id field.
+# source: wait 600 us - driver/razerkbd_driver.c razer_get_report_params() uses
+#   RAZER_BLACKWIDOW_CHROMA_WAIT_US for this PID; driver/razercommon.h value = 600.
+#   Same function sets report_index = 0x02 and response_index = 0x02 for this PID
+#   (the schema has no field for those yet).
+# source: lighting commands - driver/razerchromacommon.c, extended matrix
+#   functions (command class 0x0F, command ID 0x02; brightness is 0x0F/0x04).
+# source: LED id 0x05 - driver/razercommon.h #define BACKLIGHT_LED 0x05; the
+#   Mini's matrix effects all target BACKLIGHT_LED in razerkbd_driver.c.
+
+name = "Razer Huntsman Mini"
+usb_pid = "0x0257"
+device_type = "keyboard"
+transaction_id = "0x3f"
+wait_us = 600
+matrix_dims = [5, 15]
+
+[capabilities]
+lighting = true
+dpi = false
+polling_rate = false
+battery = false
+
+[[led_regions]]
+name = "backlight"
+id = 0x05
